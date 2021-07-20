@@ -1,5 +1,6 @@
 package uz.developer.test
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.media.MediaPlayer.create
 import android.net.Uri
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.smarteist.autoimageslider.SliderView
 import kotlinx.android.synthetic.main.bottom_sheet.*
+import kotlinx.android.synthetic.main.contain_main.*
 
 
 class MainActivity : AppCompatActivity(),View.OnClickListener {
@@ -41,6 +43,8 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         back_last.setOnClickListener(this)
         next_btn.setOnClickListener(this)
         list_item.setOnClickListener(this)
+        fab1.setOnClickListener(this)
+        fab.setOnClickListener(this)
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
 
@@ -55,6 +59,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         mediaPlayer!!.start()
         seek_bar.progress = 0
         seek_bar.max = mediaPlayer!!.duration
+        seek_bar2.max = mediaPlayer!!.duration
+        seek_bar2.progress = 0
+
         totaltime = mediaPlayer!!.duration
 
 
@@ -132,7 +139,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                     handler2.postDelayed(this,1000)
                 }catch (e:Exception){
                     seek_bar.progress=0
-                    seek_bar2.progress = 0
+
+
+
                 }
             }
         },0)
@@ -276,6 +285,12 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                 linerbottom.visibility = View.GONE
                 linerlist.visibility=View.VISIBLE
                 mediaPlayer!!.stop()
+            }
+            R.id.fab->{
+                fab.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
+            }
+            R.id.fab1->{
+                fab1.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
             }
         }
     }}

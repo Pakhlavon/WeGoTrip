@@ -44,6 +44,7 @@ class MySongAdapter: RecyclerView.Adapter<MySongAdapter.MyViewHolder>() {
                 (holder.itemView.context as MainActivity).linerID.visibility = View.VISIBLE
                 (holder.itemView.context as MainActivity).linerbottom.visibility = View.GONE
                 (holder.itemView.context as MainActivity).linerlist.visibility = View.GONE
+                (holder.itemView.context as MainActivity). seek_bar2.progress = 0
 
             }
             if (holder.txtsong.text=="Musicc"){
@@ -53,6 +54,7 @@ class MySongAdapter: RecyclerView.Adapter<MySongAdapter.MyViewHolder>() {
                 (holder.itemView.context as MainActivity).linerID.visibility = View.VISIBLE
                 (holder.itemView.context as MainActivity).linerbottom.visibility = View.GONE
                 (holder.itemView.context as MainActivity).linerlist.visibility = View.GONE
+                (holder.itemView.context as MainActivity).seek_bar2.progress = 0
             }
             if (holder.txtsong.text=="musics"){
                 (holder.itemView.context as MainActivity).mediaPlayer = MediaPlayer.create(holder.itemView.context, resIDItem.get(2))
@@ -61,6 +63,7 @@ class MySongAdapter: RecyclerView.Adapter<MySongAdapter.MyViewHolder>() {
                 (holder.itemView.context as MainActivity).linerID.visibility = View.VISIBLE
                 (holder.itemView.context as MainActivity).linerbottom.visibility = View.GONE
                 (holder.itemView.context as MainActivity).linerlist.visibility = View.GONE
+                (holder.itemView.context as MainActivity).seek_bar2.progress = 0
             }
         })
     }
