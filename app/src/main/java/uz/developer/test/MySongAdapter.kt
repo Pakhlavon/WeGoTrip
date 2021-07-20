@@ -5,6 +5,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -35,16 +36,20 @@ class MySongAdapter: RecyclerView.Adapter<MySongAdapter.MyViewHolder>() {
        holder.txtsong.text=resID[position]
             val resIDItem = intArrayOf(R.raw.music,R.raw.musics,R.raw.musicc)
         holder.itemView.setOnClickListener(View.OnClickListener {
+            holder.txtsong.startAnimation(AnimationUtils.loadAnimation(holder.itemView.context, R.anim.animation))
             if (holder.txtsong.text=="Music"){
                 (holder.itemView.context as MainActivity).mediaPlayer = MediaPlayer.create(holder.itemView.context, resIDItem[0])
                 (holder.itemView.context as MainActivity).mediaPlayer!!.start()
+                (holder.itemView.context as MainActivity).play_btn_layout.setImageResource(R.drawable.ic_pause_white)
                 (holder.itemView.context as MainActivity).linerID.visibility = View.VISIBLE
                 (holder.itemView.context as MainActivity).linerbottom.visibility = View.GONE
                 (holder.itemView.context as MainActivity).linerlist.visibility = View.GONE
+
             }
             if (holder.txtsong.text=="Musicc"){
                 (holder.itemView.context as MainActivity).mediaPlayer = MediaPlayer.create(holder.itemView.context, resIDItem.get(1))
                 (holder.itemView.context as MainActivity).mediaPlayer!!.start()
+                (holder.itemView.context as MainActivity).play_btn_layout.setImageResource(R.drawable.ic_pause_white)
                 (holder.itemView.context as MainActivity).linerID.visibility = View.VISIBLE
                 (holder.itemView.context as MainActivity).linerbottom.visibility = View.GONE
                 (holder.itemView.context as MainActivity).linerlist.visibility = View.GONE
@@ -52,6 +57,7 @@ class MySongAdapter: RecyclerView.Adapter<MySongAdapter.MyViewHolder>() {
             if (holder.txtsong.text=="musics"){
                 (holder.itemView.context as MainActivity).mediaPlayer = MediaPlayer.create(holder.itemView.context, resIDItem.get(2))
                 (holder.itemView.context as MainActivity).mediaPlayer!!.start()
+                (holder.itemView.context as MainActivity).play_btn_layout.setImageResource(R.drawable.ic_pause_white)
                 (holder.itemView.context as MainActivity).linerID.visibility = View.VISIBLE
                 (holder.itemView.context as MainActivity).linerbottom.visibility = View.GONE
                 (holder.itemView.context as MainActivity).linerlist.visibility = View.GONE

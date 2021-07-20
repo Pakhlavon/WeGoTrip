@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.Toast
@@ -136,34 +137,34 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
             }
         },0)
 
-        Thread(Runnable {
-            while (mediaPlayer != null) {
-                try {
-                    var msg = Message()
-                    msg.what = mediaPlayer!!.currentPosition
-                    handler.sendMessage(msg)
-                    Thread.sleep(1000)
-                } catch (e: InterruptedException) {
-
-                }
-            }
-        }).start()
+//        Thread(Runnable {
+//            while (mediaPlayer != null) {
+//                try {
+//                    var msg = Message()
+//                    msg.what = mediaPlayer!!.currentPosition
+//                    handler.sendMessage(msg)
+//                    Thread.sleep(1000)
+//                } catch (e: InterruptedException) {
+//
+//                }
+//            }
+//        }).start()
 
     }
 
-    @SuppressLint("HandlerLeak")
-    var handler = object :Handler(){
-        override fun handleMessage(msg: Message) {
-            var currentPositions = msg.what
-            seek_bar2.progress = currentPositions
-
-            var txtlasttimee = createTime(currentPositions)
-            txtlasttime.text= txtlasttimee
-
-            var remainingtime = createTime(totaltime - currentPositions)
-            nexttime.text = "-$remainingtime"
-        }
-    }
+//    @SuppressLint("HandlerLeak")
+//    var handler = object :Handler(){
+//        override fun handleMessage(msg: Message) {
+//            var currentPositions = msg.what
+//            seek_bar2.progress = currentPositions
+//
+//            var txtlasttimee = createTime(currentPositions)
+//            txtlasttime.text= txtlasttimee
+//
+//            var remainingtime = createTime(totaltime - currentPositions)
+//            nexttime.text = "-$remainingtime"
+//        }
+//    }
     private fun setImageInSlider(images: ArrayList<String>, imageSlider: SliderView) {
         val adapter = MySliderImageAdapter()
         adapter.renewItems(images)
@@ -171,22 +172,23 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
 //        imageSlider.isAutoCycle = true
 //        imageSlider.startAutoCycle()
     }
-    fun createTime(time: Int): String{
-        var timeLabel =""
-        var min = time/100/60
-        var sec = time/100%60
-
-        timeLabel="$min:"
-        if (sec<10) timeLabel+="0"
-        timeLabel+=sec
-        return timeLabel
-    }
+//    fun createTime(time: Int): String{
+//        var timeLabel =""
+//        var min = time/100/60
+//        var sec = time/100%60
+//
+//        timeLabel="$min:"
+//        if (sec<10) timeLabel+="0"
+//        timeLabel+=sec
+//        return timeLabel
+//    }
 
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.forward_bottom->{
             }
             R.id.play_btn_layout->{
+                play_btn_layout.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
                 if (!mediaPlayer!!.isPlaying) {
                     mediaPlayer!!.start()
                     seek_bar2.max = mediaPlayer!!.duration
@@ -210,6 +212,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
 
             }
             R.id.btn_back_layout->{
+                btn_back_layout.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
                 var seekto: Int = mediaPlayer!!.currentPosition - 5000
                 if (seekto > mediaPlayer!!.duration)
                     seekto = mediaPlayer!!.duration
@@ -218,6 +221,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                 mediaPlayer!!.start()
             }
             R.id.btn_next_layout->{
+                btn_next_layout.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
                 var seekto:Int = mediaPlayer!!.currentPosition + 5000
                 if (seekto<0)
                     seekto=0
@@ -226,6 +230,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                 mediaPlayer!!.start()
             }
             R.id.play_btn->{
+                play_btn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
                 if (!mediaPlayer!!.isPlaying){
                     mediaPlayer!!.start()
                     seek_bar.max = mediaPlayer!!.duration
@@ -248,6 +253,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                 }
             }
             R.id.back_last->{
+                back_last.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
                 var seekto: Int = mediaPlayer!!.currentPosition -5000
                 if (seekto>mediaPlayer!!.duration)
                     seekto=mediaPlayer!!.duration
@@ -256,6 +262,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                 mediaPlayer!!.start()
             }
             R.id.next_btn->{
+                next_btn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
                 var seekto:Int = mediaPlayer!!.currentPosition + 5000
                 if (seekto<0)
                     seekto=0
@@ -264,6 +271,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                 mediaPlayer!!.start()
             }
             R.id.list_item->{
+               list_item.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
                 linerID.visibility = View.GONE
                 linerbottom.visibility = View.GONE
                 linerlist.visibility=View.VISIBLE
